@@ -1,0 +1,97 @@
+---
+import logo from "@/components/images/vlogo.png";
+---
+
+<header class="">
+  <div
+    class="fixed top-0 left-0 pl-5 lg:pl-8 pt-5 lg:pt-8 z-60 text-white transition-[top]"
+  >
+    <a href="/" class="change-cursor"
+      ><img
+        src={logo.src}
+        alt="Villa Ivan Logo"
+        class="h-8 lg:h-12 w-auto"
+      /></a
+    >
+  </div>
+  <div
+    class="fixed top-0 right-0 pr-5 lg:pr-8 pt-5 lg:pt-8 z-50 text-white leading-none"
+  >
+    <button
+      id="navButton"
+      type="button"
+      class="change-cursor my-1"
+      aria-haspopup="menu"
+      aria-expanded="false"
+    >
+      <div class="w-5 lg:w-10 h-5 lg:h-10">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          class="plus-icon"
+          id="navIcon"
+          style="translate:none;rotate:none;scale:none;transform:translate(0,0)"
+          viewBox="0 0 40 40"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M0 20h40M20 0v40"></path>
+        </svg>
+      </div>
+      <span class="sr-only">Menü öffnen</span>
+    </button>
+  </div>
+  <!-- Menú desplegable -->
+  <div id="navMenu" class="fixed inset-0 z-40 bg-black bg-opacity-90 hidden">
+    <!-- Aquí va tu contenido de navegación -->
+    <nav class="flex items-center justify-center h-full">
+      <ul
+        class="text-white font-light text-4xl md:text-5xl space-y-6 font-secondary"
+      >
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const navButton = document.getElementById("navButton");
+    const navMenu = document.getElementById("navMenu");
+    const navIcon = document.getElementById("navIcon");
+
+    let menuOpen = false;
+
+    navButton.addEventListener("click", () => {
+      menuOpen = !menuOpen;
+
+      if (menuOpen) {
+        // Mostrar el menú y cambiar el SVG
+        gsap.to(navMenu, { opacity: 1, display: "block", duration: 0.5 });
+        gsap.to(navIcon, {
+          rotate: 45,
+          duration: 0.3,
+          transformOrigin: "center",
+        });
+        navButton.setAttribute("aria-expanded", "true");
+      } else {
+        // Ocultar el menú y restaurar el SVG
+        gsap.to(navMenu, { opacity: 0, display: "none", duration: 0.5 });
+        gsap.to(navIcon, {
+          rotate: 0,
+          duration: 0.3,
+          transformOrigin: "center",
+        });
+        navButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+</script>
