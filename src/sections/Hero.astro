@@ -2,8 +2,8 @@
 
 ---
 
-<div class="racesWrapper overflow-x-scroll md:overflow-x-hidden">
-  <div class="races h-[100vh] items-center whitespace-nowrap">
+<div class="racesWrapper overflow-x-hidden md:mb-20">
+  <div class="races h-[100vh] items-center">
     <h2 class="text-white text-[30vw]">Villa Ivan</h2>
   </div>
   <div class="box1 absolute bottom-7 left-12 md:left-24">
@@ -16,7 +16,6 @@
       Argentina
     </h2>
   </div>
-  <div class="h-[100vh]"></div>
 </div>
 
 <style>
@@ -56,12 +55,12 @@
     }
 
     function calculateEndMd() {
-      let additionalOffset = window.innerWidth < 768 ? 500 : 250; // Ajuste para móviles
+      let additionalOffset = window.innerWidth < 768 ? 500 : -450; // Ajuste para móviles
       return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
     }
 
     function calculateEndSm() {
-      let additionalOffset = window.innerWidth < 768 ? 500 : 0; // Ajuste para móviles
+      let additionalOffset = window.innerWidth < 768 ? 500 : -150; // Ajuste para móviles
       return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
     }
 
@@ -102,7 +101,6 @@
         animation: tween2,
         scrub: 3,
         invalidateOnRefresh: true,
-        markers: true,
       });
       ScrollTrigger.create({
         trigger: ".racesWrapper",
@@ -111,7 +109,6 @@
         animation: tween3,
         scrub: 3,
         invalidateOnRefresh: true,
-        markers: true,
       });
     }
 
