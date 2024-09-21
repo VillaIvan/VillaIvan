@@ -2,17 +2,17 @@
 
 ---
 
-<div class="racesWrapper overflow-x-hidden md:mb-20">
+<div class="racesWrapper overflow-x-hidden md:mb-20 relative mb-40">
   <div class="races h-[100vh] items-center">
     <h2 class="text-white text-[30vw]">Villa Ivan</h2>
   </div>
-  <div class="box1 absolute bottom-7 left-12 md:left-24">
-    <h2 class="text-white font-secondary text-xl md:text-2xl font-extralight">
+  <div class="box1 absolute bottom-7 left-8 md:left-16">
+    <h2 class="text-white font-secondary text-lg md:text-2xl font-extralight">
       Multimedia Design Studio
     </h2>
   </div>
   <div class="box2 absolute bottom-7 right-8 md:right-16">
-    <h2 class="text-white font-secondary text-xl md:text-2xl font-extralight">
+    <h2 class="text-white font-secondary text-lg md:text-2xl font-extralight">
       Argentina
     </h2>
   </div>
@@ -41,7 +41,6 @@
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -54,66 +53,101 @@
       return -(500 + racesWidth - window.innerWidth);
     }
 
-    function calculateEndMd() {
-      let additionalOffset = window.innerWidth < 768 ? 500 : -450; // Ajuste para móviles
-      return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
-    }
-
-    function calculateEndSm() {
-      let additionalOffset = window.innerWidth < 768 ? 500 : -150; // Ajuste para móviles
-      return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
-    }
-
-    function initScrollAnimation() {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-      const tween = gsap.to(races, {
-        x: getScrollAmount,
-        duration: 4,
-        delay: 0.3,
-        ease: "power1.inOut",
-      });
-      const tween2 = gsap.to(box, {
-        x: -500,
-        duration: 4,
-        delay: 0.3,
-        ease: "power1.inOut",
-      });
-      const tween3 = gsap.to(box2, {
-        x: 200,
-        duration: 4,
-        delay: 0.3,
-        ease: "power1.inOut",
-      });
-
-      ScrollTrigger.create({
+    gsap.to(races, {
+      x: getScrollAmount,
+      duration: 4,
+      scrollTrigger: {
         trigger: ".racesWrapper",
-        start: "top 20%",
-        end: calculateEndMd, // Usar la función para calcular el 'end'
-        animation: tween,
-        scrub: 3,
-        invalidateOnRefresh: true,
-      });
-      ScrollTrigger.create({
-        trigger: ".racesWrapper",
-        start: "top 20%",
-        end: calculateEndSm, // Usar la función para calcular el 'end'
-        animation: tween2,
-        scrub: 3,
-        invalidateOnRefresh: true,
-      });
-      ScrollTrigger.create({
-        trigger: ".racesWrapper",
-        start: "top 20%",
-        end: calculateEndSm, // Usar la función para calcular el 'end'
-        animation: tween3,
-        scrub: 3,
-        invalidateOnRefresh: true,
-      });
-    }
+        start: "top top",
+        end: "+=1700",
 
-    initScrollAnimation();
+        scrub: 3, // Marcadores de prueba (puedes eliminarlos después)
+      },
+    });
+    gsap.to(box, {
+      x: -500,
+      duration: 4,
+      scrollTrigger: {
+        trigger: ".racesWrapper",
+        start: "top top",
+        end: "+=2500",
 
-    window.addEventListener("resize", initScrollAnimation);
+        scrub: 3, // Marcadores de prueba (puedes eliminarlos después)
+      },
+    });
+    gsap.to(box2, {
+      x: 200,
+      duration: 4,
+      scrollTrigger: {
+        trigger: ".racesWrapper",
+        start: "top top",
+        end: "+=2500",
+
+        scrub: 3, // Marcadores de prueba (puedes eliminarlos después)
+      },
+    });
   });
+
+  // function calculateEndMd() {
+  //   let additionalOffset = window.innerWidth < 768 ? 500 : -450; // Ajuste para móviles
+  //   return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
+  // }
+
+  // function calculateEndSm() {
+  //   let additionalOffset = window.innerWidth < 768 ? 500 : -150; // Ajuste para móviles
+  //   return `+=${Math.abs(getScrollAmount()) + additionalOffset}`;
+  // }
+
+  // function initScrollAnimation() {
+  //   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+  //   const tween = gsap.to(races, {
+  //     x: getScrollAmount,
+  //     duration: 4,
+  //     delay: 0.3,
+  //     ease: "power1.inOut",
+  //   });
+  //   const tween2 = gsap.to(box, {
+  //     x: -500,
+  //     duration: 4,
+  //     delay: 0.3,
+  //     ease: "power1.inOut",
+  //   });
+  //   const tween3 = gsap.to(box2, {
+  //     x: 200,
+  //     duration: 4,
+  //     delay: 0.3,
+  //     ease: "power1.inOut",
+  //   });
+
+  //   ScrollTrigger.create({
+  //     trigger: ".racesWrapper",
+  //     start: "top 20%",
+  //     end: calculateEndMd, // Usar la función para calcular el 'end'
+  //     animation: tween,
+  //     scrub: 3,
+  //     invalidateOnRefresh: true,
+  //   });
+  //   ScrollTrigger.create({
+  //     trigger: ".racesWrapper",
+  //     start: "top 20%",
+  //     end: calculateEndSm, // Usar la función para calcular el 'end'
+  //     animation: tween2,
+  //     scrub: 3,
+  //     invalidateOnRefresh: true,
+  //   });
+  //   ScrollTrigger.create({
+  //     trigger: ".racesWrapper",
+  //     start: "top 20%",
+  //     end: calculateEndSm, // Usar la función para calcular el 'end'
+  //     animation: tween3,
+  //     scrub: 3,
+  //     invalidateOnRefresh: true,
+  //   });
+  // }
+
+  // initScrollAnimation();
+
+  // window.addEventListener("resize", initScrollAnimation);
+  // });
 </script>

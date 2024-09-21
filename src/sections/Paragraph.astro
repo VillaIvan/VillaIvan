@@ -1,24 +1,56 @@
----
-
----
-
-<div
-  class="flex flex-col justify-center items-center h-[100vh] m-auto w-full overflow-x-auto"
+<!-- Sección del párrafo -->
+<section
+  class="wrapper flex flex-col justify-center items-center h-auto md:h-[100vh] w-[80vw] mx-auto relative gap-20 mb-40"
 >
-  <div class="mx-auto mb-20 w-[90%] p-5">
+  <!-- Texto principal en el centro -->
+  <div class="mx-auto mb-0 md:mb-20">
     <p
-      class="para text-white text-[50px] md:text-[100px] lg:text-[145px] font-thin leading-tight"
+      class="para text-white text-[5vh] md:text-[10vh] lg:text-[15vh] font-thin leading-tight opacity-0"
     >
       Von Frauen* geführte Unternehmen verdienen es, gesehen zu werden.
     </p>
   </div>
-  <div class="foot w-full flex justify-end items-end p-4 revealUp">
-    <p class="text-white text-4xl">
+
+  <!-- Footer en el margen inferior derecho -->
+  <div
+    class="foot flex justify-end items-center md:absolute md:bottom-4 md:right-4 mx-auto"
+  >
+    <p class="text-white text-[13px] md:text-[2vh] font-secondary text-end">
       * und alle Unternehmen mit weiblich gelesenen Personen und FLINTA* in
       Führungspositionen
     </p>
   </div>
-</div>
+</section>
+
+<section
+  class="wrapper flex flex-col justify-center items-center h-auto md:h-[100vh] w-[80vw] md:w-[60vw] mx-auto relative gap-20 mb-40"
+>
+  <!-- Texto principal en el centro -->
+  <div class="mx-auto mb-0 md:mb-20">
+    <p
+      class="para2 text-white text-[5vh] md:text-[10vh] lg:text-[15vh] font-thin leading-tight opacity-0"
+    >
+      Das Fundament dafür ist eine <span
+        class="underline underline-offset-4 decoration-4">starke Marke</span
+      >, die begeistert
+    </p>
+  </div>
+
+  <!-- Footer en el margen inferior derecho -->
+  <div
+    class="foot2 flex justify-end items-center md:absolute md:bottom-4 md:right-4 mx-auto"
+  >
+    <p class="text-white text-sm md:text-[2vh] font-secondary">
+      2024 wird die Geschäftswelt noch immer von Männern dominiert. Es ist also
+      höchste Zeit für eine vielfältige Businesswelt, in der Menschen unabhängig
+      von Geschlecht und ethnischer Herkunft gleichermaßen anerkannt sind.
+      Deshalb setzen wir uns dafür ein, die Sichtbarkeit von Unternehmen mit
+      Frauen in Führungspositionen zu erhöhen, indem wir gemeinsam an der
+      Entwicklung einer starken Marke arbeiten, die Menschen zu begeisterten
+      Fans und freiwilligen Kund*innen macht.
+    </p>
+  </div>
+</section>
 
 <script>
   import { gsap } from "gsap";
@@ -28,25 +60,36 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const paragraph = document.querySelector(".para");
+    const paragraph2 = document.querySelector(".para2");
 
+    // Configuración de la animación de opacidad del párrafo
     gsap.fromTo(
       paragraph,
       { opacity: 0 },
       {
         opacity: 1,
-
         duration: 4,
         scrollTrigger: {
           trigger: paragraph,
-          start: "top 90%",
-          end: "+=300",
-          scrub: true,
-          markers: true,
+          start: "top 90%", // La animación comienza cuando el top llega al 90% del viewport
+          end: "+=300", // La animación finaliza cuando el desplazamiento es de 300px
+          scrub: 3, // La animación se ajusta al desplazamiento de la página
         },
       }
     );
-    window.addEventListener("resize", () => {
-      ScrollTrigger.refresh();
-    });
+    gsap.fromTo(
+      paragraph2,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 4,
+        scrollTrigger: {
+          trigger: paragraph2,
+          start: "top 90%", // La animación comienza cuando el top llega al 90% del viewport
+          end: "+=300", // La animación finaliza cuando el desplazamiento es de 300px
+          scrub: 3, // La animación se ajusta al desplazamiento de la página
+        },
+      }
+    );
   });
 </script>
