@@ -2,6 +2,7 @@
 import "@fontsource-variable/playfair-display";
 import "@fontsource-variable/noto-sans";
 import Header from "@/components/Header.astro";
+import SmoothScroll from "@/components/SmoothScroll.jsx";
 
 interface Props {
   title: string;
@@ -22,7 +23,12 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
-    <slot />
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <slot />
+      </div>
+    </div>
+    <SmoothScroll client:load />
   </body>
 </html>
 <style is:global>

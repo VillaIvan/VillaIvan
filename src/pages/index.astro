@@ -1,13 +1,14 @@
 ---
+import PinnedTextSection from "@/components/PinnedTextSection.jsx";
 import Layout from "../layouts/Layout.astro";
 import Hero from "@/sections/Hero.astro";
 import Paragraph from "@/sections/Paragraph.astro";
 ---
 
-<Layout title="Ivan Villa">
+<Layout title="Villa Ivan">
   <main class="">
     <Hero />
     <Paragraph />
-    <div class="h-[100vh]"></div>
+    <PinnedTextSection client:load />
   </main>
 </Layout>
